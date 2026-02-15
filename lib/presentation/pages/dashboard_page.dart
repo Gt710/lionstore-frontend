@@ -4,6 +4,7 @@ import '../../domain/models/ticket.dart';
 import '../widgets/repair_tile.dart';
 import 'create_ticket_page.dart';
 import 'search_ticket_page.dart';
+import 'admin_profile_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -68,104 +69,125 @@ class _DashboardPageState extends State<DashboardPage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Repair Service',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: -1,
+      body: _buildBody(isDark),
+      bottomNavigationBar: _buildBottomNav(isDark),
+    );
+  }
+
+  Widget _buildBody(bool isDark) {
+    switch (_selectedIndex) {
+      case 0:
+        return _buildDashboardHome(isDark);
+      case 1:
+        return const Center(child: Text('Orders Screen (Coming Soon)'));
+      case 2:
+        return const AdminProfilePage();
+      default:
+        return _buildDashboardHome(isDark);
+    }
+  }
+
+  Widget _buildDashboardHome(bool isDark) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Repair Service',
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.w800,
+                letterSpacing: -1,
+              ),
+            ),
+            const SizedBox(height: 32),
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CreateTicketPage(),
+                      ),
+                    ),
+                    child: _buildActionButton(
+                      context,
+                      label: 'New Ticket',
+                      sublabel: 'Create entry',
+                      icon: Icons.add,
+                      color: AppColors.primary,
+                      textColor: AppColors.textLight,
+                      isDark: isDark,
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 32),
-              Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CreateTicketPage(),
-                        ),
-                      ),
-                      child: _buildActionButton(
-                        context,
-                        label: 'New Ticket',
-                        sublabel: 'Create entry',
-                        icon: Icons.add,
-                        color: AppColors.primary,
-                        textColor: AppColors.textLight,
-                        isDark: isDark,
+                const SizedBox(width: 16),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchTicketPage(),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SearchTicketPage(),
-                        ),
-                      ),
-                      child: _buildActionButton(
-                        context,
-                        label: 'Search',
-                        sublabel: 'Find by ID',
-                        icon: Icons.search,
-                        color: isDark
-                            ? AppColors.surfaceDark
-                            : AppColors.textLight,
-                        textColor: Colors.white,
-                        isDark: isDark,
-                        hasBorder: isDark,
-                      ),
+                    child: _buildActionButton(
+                      context,
+                      label: 'Search',
+                      sublabel: 'Find by ID',
+                      icon: Icons.search,
+                      color: isDark
+                          ? AppColors.surfaceDark
+                          : AppColors.textLight,
+                      textColor: Colors.white,
+                      isDark: isDark,
+                      hasBorder: isDark,
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Recent Activity',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'View All',
-                      style: TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Recent Activity',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchTicketPage(),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: _recentTickets.length,
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 12),
-                itemBuilder: (context, index) {
-                  return RepairTile(ticket: _recentTickets[index]);
-                },
-              ),
-              const SizedBox(height: 80), // Space for bottom nav
-            ],
-          ),
+                  child: const Text(
+                    'View All',
+                    style: TextStyle(
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: _recentTickets.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                return RepairTile(ticket: _recentTickets[index]);
+              },
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNav(isDark),
     );
   }
 

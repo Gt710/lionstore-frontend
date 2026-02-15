@@ -43,60 +43,34 @@ class RepairTile extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      color: isDark
-                          ? Colors.white.withValues(alpha: 0.1)
-                          : const Color(0xFFF5F3F0),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Icon(
-                      ticket.icon,
-                      color: isDark ? Colors.white : AppColors.textLight,
-                      size: 24,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                showDetails
-                                    ? '#${ticket.id}'
-                                    : ticket.deviceName,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            StatusBadge(status: ticket.status),
-                          ],
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          showDetails
-                              ? ticket.deviceName
-                              : '#${ticket.id} • ${ticket.category}',
-                          style: TextStyle(
-                            color: isDark ? Colors.grey[400] : Colors.grey[500],
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          ticket.deviceName,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
-                      ],
+                      ),
+                      StatusBadge(status: ticket.status),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '#${ticket.id} • ${ticket.category}',
+                    style: TextStyle(
+                      color: isDark ? Colors.grey[400] : Colors.grey[500],
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

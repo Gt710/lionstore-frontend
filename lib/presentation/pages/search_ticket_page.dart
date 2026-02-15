@@ -184,7 +184,7 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? const Color(0xFF1F2937)
+            ? AppColors.surfaceDark
             : Colors.white, // gray-800 or white
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
@@ -249,7 +249,7 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
       decoration: BoxDecoration(
         color: isActive
             ? AppColors.primary.withValues(alpha: 0.1)
-            : (isDark ? const Color(0xFF1F2937) : Colors.white),
+            : (isDark ? AppColors.surfaceDark : Colors.white),
         borderRadius: BorderRadius.circular(999),
         border: Border.all(
           color: isActive
@@ -308,7 +308,7 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF1F2937) : const Color(0xFFF3F4F6),
+              color: isDark ? AppColors.surfaceDark : const Color(0xFFF3F4F6),
               shape: BoxShape.circle,
             ),
             child: Icon(Icons.search_off, size: 48, color: Colors.grey[400]),
