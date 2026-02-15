@@ -6,6 +6,8 @@ import 'create_ticket_page.dart';
 import 'search_ticket_page.dart';
 import 'admin_profile_page.dart';
 
+import 'team_management_page.dart';
+
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
@@ -15,6 +17,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
+  bool _isAdminSubPage = false;
 
   final List<RepairTicket> _recentTickets = [
     const RepairTicket(
@@ -81,7 +84,13 @@ class _DashboardPageState extends State<DashboardPage> {
       case 1:
         return const Center(child: Text('Orders Screen (Coming Soon)'));
       case 2:
-        return const AdminProfilePage();
+        return _isAdminSubPage
+            ? TeamManagementPage(
+                onBack: () => setState(() => _isAdminSubPage = false),
+              )
+            : AdminProfilePage(
+                onTeamManagement: () => setState(() => _isAdminSubPage = true),
+              );
       default:
         return _buildDashboardHome(isDark);
     }
@@ -271,7 +280,12 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       child: BottomNavigationBar(
         currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+            _isAdminSubPage = false;
+          });
+        },
         backgroundColor: Colors.transparent,
         elevation: 0,
         selectedItemColor: AppColors.primary,

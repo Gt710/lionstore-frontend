@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_theme.dart';
 
 class AdminProfilePage extends StatelessWidget {
-  const AdminProfilePage({super.key});
+  final VoidCallback onTeamManagement;
+
+  const AdminProfilePage({super.key, required this.onTeamManagement});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +17,26 @@ class AdminProfilePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            _buildAppBar(context, isDark),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.only(bottom: 24),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 24,
+                ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Text(
+                      'Admin',
+                      style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -1,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
                     _buildProfileHeaderCard(isDark),
+                    const SizedBox(height: 24),
                     _buildStatsGrid(isDark),
                     _buildAdminConsoleCard(isDark),
                     _buildSettingsSection(isDark),
@@ -35,152 +50,104 @@ class AdminProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildAppBar(BuildContext context, bool isDark) {
+  Widget _buildProfileHeaderCard(bool isDark) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.backgroundDark.withValues(alpha: 0.95)
-            : AppColors.backgroundLight.withValues(alpha: 0.95),
-        border: Border(
-          bottom: BorderSide(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.05)
-                : Colors.grey[200]!,
-          ),
+        color: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.05)
+              : const Color(0xFFE6E2DB),
         ),
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          const Text(
-            'Admin',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.settings_outlined),
-              style: IconButton.styleFrom(
-                highlightColor: isDark
-                    ? Colors.white.withValues(alpha: 0.1)
-                    : Colors.black.withValues(alpha: 0.05),
-              ),
+        boxShadow: [
+          if (!isDark)
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.02),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
-          ),
         ],
       ),
-    );
-  }
-
-  Widget _buildProfileHeaderCard(bool isDark) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.05)
-                : const Color(0xFFE6E2DB),
-          ),
-          boxShadow: [
-            if (!isDark)
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.02),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Yuriy Kolomiiets',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? AppColors.textDark : AppColors.textLight,
+                ),
               ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Yuriy Kolomiiets',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? AppColors.textDark : AppColors.textLight,
-                  ),
+              const SizedBox(height: 4),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(999),
                 ),
-                const SizedBox(height: 4),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.verified_user_outlined,
-                        size: 14,
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.verified_user_outlined,
+                      size: 14,
+                      color: AppColors.primary,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      'ADMINISTRATOR',
+                      style: TextStyle(
                         color: AppColors.primary,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 0.5,
                       ),
-                      SizedBox(width: 4),
-                      Text(
-                        'ADMINISTRATOR',
-                        style: TextStyle(
-                          color: AppColors.primary,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            IconButton(
-              icon: Icon(Icons.edit_outlined, color: Colors.grey[400]),
-              onPressed: () {},
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          IconButton(
+            icon: Icon(Icons.edit_outlined, color: Colors.grey[400]),
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildStatsGrid(bool isDark) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          Expanded(
-            child: _buildStatCard(
-              isDark,
-              count: '12',
-              label: 'ACTIVE',
-              icon: Icons.pending_actions,
-              iconColor: Colors.orange,
-              iconBg: Colors.orange.withValues(alpha: 0.1),
-            ),
+    return Row(
+      children: [
+        Expanded(
+          child: _buildStatCard(
+            isDark,
+            count: '12',
+            label: 'ACTIVE',
+            icon: Icons.pending_actions,
+            iconColor: Colors.orange,
+            iconBg: Colors.orange.withValues(alpha: 0.1),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: _buildStatCard(
-              isDark,
-              count: '142',
-              label: 'COMPLETED',
-              icon: Icons.check_circle_outlined,
-              iconColor: Colors.green,
-              iconBg: Colors.green.withValues(alpha: 0.1),
-            ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: _buildStatCard(
+            isDark,
+            count: '142',
+            label: 'COMPLETED',
+            icon: Icons.check_circle_outlined,
+            iconColor: Colors.green,
+            iconBg: Colors.green.withValues(alpha: 0.1),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -257,12 +224,12 @@ class AdminProfilePage extends StatelessWidget {
 
   Widget _buildAdminConsoleCard(bool isDark) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 32, 16, 0),
+      padding: const EdgeInsets.only(top: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 8, bottom: 12),
+            padding: const EdgeInsets.only(left: 4, bottom: 12),
             child: Text(
               'ADMIN CONSOLE',
               style: TextStyle(
@@ -275,88 +242,96 @@ class AdminProfilePage extends StatelessWidget {
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-                border: Border.all(
+            child: InkWell(
+              onTap: onTeamManagement,
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
                   color: isDark
-                      ? Colors.white.withValues(alpha: 0.05)
-                      : const Color(0xFFE6E2DB),
-                ),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: -20,
-                    top: -20,
-                    bottom: -20,
-                    child: Container(width: 4, color: AppColors.primary),
+                      ? AppColors.surfaceDark
+                      : AppColors.surfaceLight,
+                  border: Border.all(
+                    color: isDark
+                        ? Colors.white.withValues(alpha: 0.05)
+                        : const Color(0xFFE6E2DB),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Icon(
-                              Icons.group_outlined,
-                              color: AppColors.primary,
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(999),
-                            ),
-                            child: const Text(
-                              '2 PENDING',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
+                ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: -20,
+                      top: -20,
+                      bottom: -20,
+                      child: Container(width: 4, color: AppColors.primary),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: const Icon(
+                                Icons.group_outlined,
+                                color: AppColors.primary,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Manage Team & Access',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: isDark
-                              ? AppColors.textDark
-                              : AppColors.textLight,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(999),
+                              ),
+                              child: const Text(
+                                '2 PENDING',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Approve new users, assign roles, or remove access from the system.',
-                        style: TextStyle(fontSize: 14, color: Colors.grey[500]),
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    right: -30,
-                    bottom: -30,
-                    child: Opacity(
-                      opacity: 0.05,
-                      child: const Icon(Icons.security, size: 100),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Manage Team & Access',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: isDark
+                                ? AppColors.textDark
+                                : AppColors.textLight,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Approve new users, assign roles, or remove access from the system.',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                    Positioned(
+                      right: -30,
+                      bottom: -30,
+                      child: Opacity(
+                        opacity: 0.05,
+                        child: const Icon(Icons.security, size: 100),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -367,12 +342,12 @@ class AdminProfilePage extends StatelessWidget {
 
   Widget _buildSettingsSection(bool isDark) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 32, 16, 0),
+      padding: const EdgeInsets.only(top: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 8, bottom: 12),
+            padding: const EdgeInsets.only(left: 4, bottom: 12),
             child: Text(
               'SETTINGS',
               style: TextStyle(
