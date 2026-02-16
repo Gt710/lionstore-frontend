@@ -114,10 +114,6 @@ class AdminProfilePage extends StatelessWidget {
               ),
             ],
           ),
-          IconButton(
-            icon: Icon(Icons.edit_outlined, color: Colors.grey[400]),
-            onPressed: () {},
-          ),
         ],
       ),
     );
@@ -369,16 +365,27 @@ class AdminProfilePage extends StatelessWidget {
               ),
             ),
             child: ListTile(
-              leading: Icon(Icons.dark_mode_outlined, color: Colors.grey[500]),
+              leading: Icon(Icons.palette_outlined, color: Colors.grey[500]),
               title: const Text(
-                'Dark Mode',
+                'Theme',
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
-              trailing: Switch(
-                value: isDark,
-                onChanged: (val) {},
-                activeThumbColor: AppColors.primary,
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Midnight',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[500],
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  Icon(Icons.chevron_right, color: Colors.grey[500]),
+                ],
               ),
+              onTap: () {},
             ),
           ),
         ],
