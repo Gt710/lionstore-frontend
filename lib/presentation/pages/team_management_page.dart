@@ -90,50 +90,52 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Column(
-      children: [
-        _buildAppBar(context, isDark),
-        Expanded(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSearchBar(isDark),
-                const SizedBox(height: 24),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8, bottom: 12),
-                  child: Text(
-                    'TEAM MEMBERS (${_filteredMembers.length})',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[500],
-                      letterSpacing: 1,
+    return SafeArea(
+      child: Column(
+        children: [
+          _buildAppBar(context, isDark),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildSearchBar(isDark),
+                  const SizedBox(height: 24),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8, bottom: 12),
+                    child: Text(
+                      'TEAM MEMBERS (${_filteredMembers.length})',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[500],
+                        letterSpacing: 1,
+                      ),
                     ),
                   ),
-                ),
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _filteredMembers.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 12),
-                  itemBuilder: (context, index) {
-                    return _buildMemberTile(_filteredMembers[index], isDark);
-                  },
-                ),
-              ],
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: _filteredMembers.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
+                    itemBuilder: (context, index) {
+                      return _buildMemberTile(_filteredMembers[index], isDark);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildAppBar(BuildContext context, bool isDark) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: isDark
             ? AppColors.backgroundDark.withValues(alpha: 0.95)
@@ -146,16 +148,13 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
           ),
         ),
       ),
-      child: Stack(
-        alignment: Alignment.center,
+      child: Row(
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: IconButton(
-              onPressed: widget.onBack,
-              icon: const Icon(Icons.arrow_back),
-            ),
+          IconButton(
+            onPressed: widget.onBack,
+            icon: const Icon(Icons.arrow_back),
           ),
+          const SizedBox(width: 8),
           const Text(
             'Team Management',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),

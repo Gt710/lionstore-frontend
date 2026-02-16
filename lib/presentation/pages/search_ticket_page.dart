@@ -93,28 +93,18 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
 
             // Section Header
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'RECENT RESULTS',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: isDark ? Colors.grey[500] : Colors.grey[600],
-                      letterSpacing: 1,
-                    ),
+              padding: const EdgeInsets.only(left: 24, top: 8, bottom: 12),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'RECENT RESULTS (${_filteredResults.length})',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[500],
+                    letterSpacing: 1,
                   ),
-                  Text(
-                    '${_filteredResults.length} FOUND',
-                    style: const TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
 

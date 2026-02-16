@@ -1,14 +1,14 @@
 
-Need fix top bar in team Management page 
-cuz cannot see the title of the page
+~~Need fix top bar in Team Management page 
+cuz cannot see the title of the page~~
 
-Need fix the problem in Problem section 
+~~Need fix the problem in Problem section~~
 
-In Find a Rapair page need delete text 
+~~In Find a Rapair page need delete text 
 "(number of found rapairs) FOUND" and add the number 
 of found rapairs in the end of the text
 "RECENT RESULTS (number of found rapairs)" like in the 
-Team Management page 
+Team Management page ~~
 
 Tlanslate the app to ukrainian language
 

@@ -99,7 +99,7 @@ class AdminProfilePage extends StatelessWidget {
                       size: 14,
                       color: AppColors.primary,
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4),
                     Text(
                       'ADMINISTRATOR',
                       style: TextStyle(
