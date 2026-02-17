@@ -90,6 +90,12 @@ class _DashboardPageState extends State<DashboardPage> {
               )
             : AdminProfilePage(
                 onTeamManagement: () => setState(() => _isAdminSubPage = true),
+                onSwitchTab: (index) {
+                  setState(() {
+                    _selectedIndex = index;
+                    _isAdminSubPage = false;
+                  });
+                },
               );
       default:
         return _buildDashboardHome(isDark);

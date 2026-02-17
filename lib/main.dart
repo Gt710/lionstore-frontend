@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'core/theme/app_theme.dart';
+import 'package:provider/provider.dart';
+import 'core/providers/theme_provider.dart';
 import 'presentation/pages/dashboard_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,13 +17,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Repairs Dashboard',
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.system,
-      home: const DashboardPage(),
-      debugShowCheckedModeBanner: false,
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'Repairs Dashboard',
+          theme: themeProvider.lightTheme,
+          darkTheme: themeProvider.darkTheme,
+          themeMode: themeProvider.themeMode,
+          home: const DashboardPage(),
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 }

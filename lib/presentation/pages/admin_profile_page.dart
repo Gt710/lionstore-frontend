@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../core/providers/theme_provider.dart';
 import '../../core/theme/app_theme.dart';
+import 'app_theme_page.dart';
 
 class AdminProfilePage extends StatelessWidget {
   final VoidCallback onTeamManagement;
+  final ValueChanged<int> onSwitchTab;
 
-  const AdminProfilePage({super.key, required this.onTeamManagement});
+  const AdminProfilePage({
+    super.key,
+    required this.onTeamManagement,
+    required this.onSwitchTab,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +47,7 @@ class AdminProfilePage extends StatelessWidget {
                     const SizedBox(height: 24),
                     _buildStatsGrid(isDark),
                     _buildAdminConsoleCard(isDark),
-                    _buildSettingsSection(isDark),
+                    _buildSettingsSection(context, isDark),
                   ],
                 ),
               ),
@@ -336,7 +344,7 @@ class AdminProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildSettingsSection(bool isDark) {
+  Widget _buildSettingsSection(BuildContext context, bool isDark) {
     return Padding(
       padding: const EdgeInsets.only(top: 32),
       child: Column(
@@ -374,7 +382,11 @@ class AdminProfilePage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Midnight',
+                    context
+                        .watch<ThemeProvider>()
+                        .currentThemeType
+                        .name
+                        .toUpperCase(),
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -385,7 +397,14 @@ class AdminProfilePage extends StatelessWidget {
                   Icon(Icons.chevron_right, color: Colors.grey[500]),
                 ],
               ),
-              onTap: () {},
+              onTap: () async {
+                final result = await Navigator.of(context).push<int>(
+                  MaterialPageRoute(builder: (context) => const AppThemePage()),
+                );
+                if (result != null) {
+                  onSwitchTab(result);
+                }
+              },
             ),
           ),
         ],
