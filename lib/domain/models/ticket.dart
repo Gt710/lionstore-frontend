@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 
 enum RepairStatus {
-  received('New', Color(0xFF3B82F6), Colors.white, Icons.fiber_new_outlined),
-  inProgress(
-    'In Process',
-    Color(0xFFF9A20B),
-    Colors.black,
-    Icons.sync_outlined,
+  received(
+    'На узгодженні',
+    Color(0xFF3B82F6),
+    Colors.white,
+    Icons.fiber_new_outlined,
   ),
+  inProgress('В роботі', Color(0xFFF9A20B), Colors.black, Icons.sync_outlined),
   waiting(
-    'Waiting for Parts',
+    'Очікує запчастин',
     Color(0xFFF97316),
     Colors.white,
     Icons.hourglass_empty_outlined,
   ),
   ready(
-    'Ready for Pickup',
+    'Готовий до видачі',
     Color(0xFF10B981),
     Colors.white,
     Icons.check_circle_outlined,
   ),
   completed(
-    'Completed',
+    'Завершений',
     Color(0xFF6B7280),
     Colors.white,
     Icons.task_alt_outlined,

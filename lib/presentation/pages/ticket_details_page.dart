@@ -65,7 +65,7 @@ class TicketDetailsPage extends StatelessWidget {
       title: Column(
         children: [
           Text(
-            'Ticket Details',
+            'Деталі талону',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
@@ -105,7 +105,7 @@ class TicketDetailsPage extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Created on ${ticket.createdAt ?? "Oct 24, 2024"}',
+              'Створено ${ticket.createdAt ?? "Oct 24, 2024"}',
               style: TextStyle(
                 fontSize: 14,
                 color: isDark ? Colors.grey[400] : Colors.grey[500],
@@ -120,7 +120,7 @@ class TicketDetailsPage extends StatelessWidget {
           children: [
             StatusBadge(status: ticket.status),
             Text(
-              '\$${ticket.price?.toStringAsFixed(2) ?? "145.00"}',
+              '${ticket.price?.toStringAsFixed(2) ?? "145.00"} ₴',
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -140,7 +140,7 @@ class TicketDetailsPage extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.only(left: 4, bottom: 12),
           child: Text(
-            'CLIENT',
+            'КЛІЄНТ',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
@@ -233,7 +233,7 @@ class TicketDetailsPage extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.only(left: 4, bottom: 12),
           child: Text(
-            'DETAILS',
+            'ДЕТАЛІ',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
@@ -256,7 +256,7 @@ class TicketDetailsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildDetailItem(
-                'Issue Description',
+                'Опис проблеми',
                 ticket.description ??
                     "Screen cracked on the upper right corner after drop.",
                 isDark,
@@ -267,7 +267,7 @@ class TicketDetailsPage extends StatelessWidget {
                 const Divider(),
                 const SizedBox(height: 24),
                 _buildDetailItem(
-                  'Device Password / Pattern',
+                  'Пароль пристрою / Ключ',
                   ticket.devicePassword!,
                   isDark,
                 ),
@@ -276,7 +276,7 @@ class TicketDetailsPage extends StatelessWidget {
               const Divider(),
               const SizedBox(height: 24),
               const Text(
-                'ASSIGNED WORKER',
+                'ВИКОНАВЕЦЬ',
                 style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -374,14 +374,15 @@ class TicketDetailsPage extends StatelessWidget {
         ticket.history ??
         [
           const TicketActivity(
-            title: 'Status updated to In Process',
+            title: 'Статус змінено на В роботі',
             date: 'Today, 10:42 AM',
             author: 'Mike S.',
-            note: '"Started disassembly. Waiting for new battery delivery."',
+            note:
+                '"Розпочато розбирання. Очікуємо на доставку нового акумулятора."',
             isRecent: true,
           ),
           const TicketActivity(
-            title: 'Ticket Created',
+            title: 'Талон створено',
             date: 'Oct 24, 09:15 AM',
             author: 'Reception',
           ),
@@ -393,7 +394,7 @@ class TicketDetailsPage extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.only(left: 4, bottom: 20),
           child: Text(
-            'ACTIVITY HISTORY',
+            'ІСТОРІЯ АКТИВНОСТІ',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
@@ -542,7 +543,7 @@ class TicketDetailsPage extends StatelessWidget {
                 ),
               ),
               child: Text(
-                'Edit Ticket',
+                'Редагувати',
                 style: TextStyle(
                   color: isDark ? Colors.white : AppColors.textLight,
                   fontWeight: FontWeight.bold,
@@ -555,7 +556,7 @@ class TicketDetailsPage extends StatelessWidget {
             child: ElevatedButton.icon(
               onPressed: () => _showUpdateStatusSheet(context),
               icon: const Icon(Icons.cached, size: 18),
-              label: const Text('Change Status'),
+              label: const Text('Змінити статус'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: AppColors.textLight,
@@ -583,7 +584,7 @@ class TicketDetailsPage extends StatelessWidget {
           // In a real app, this would update the state/API
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Status updated to ${status.label}'),
+              content: Text('Статус змінено на ${status.label}'),
               behavior: SnackBarBehavior.floating,
             ),
           );

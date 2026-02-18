@@ -94,27 +94,27 @@ class _EditTicketPageState extends State<EditTicketPage> {
                       child: Column(
                         children: [
                           _buildSectionHeader(
-                            'Device Details',
+                            'Деталі пристрою',
                             Icons.smartphone_outlined,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Device Model',
-                            placeholder: 'e.g. iPhone 14 Pro Max',
+                            label: 'Модель пристрою',
+                            placeholder: 'наприклад, iPhone 14 Pro Max',
                             controller: _deviceModelController,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Issue Description',
-                            placeholder: 'Describe the issue...',
+                            label: 'Опис проблеми',
+                            placeholder: 'Опишіть проблему...',
                             controller: _problemDescriptionController,
                             isDark: isDark,
                             maxLines: 4,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Device Password / Pattern',
+                            label: 'Пароль пристрою / Ключ',
                             placeholder:
                                 '1234, 0000 або графічний ключ (літера Z)',
                             controller: _passwordController,
@@ -126,20 +126,20 @@ class _EditTicketPageState extends State<EditTicketPage> {
                           const SizedBox(height: 24),
 
                           _buildSectionHeader(
-                            'Client Information',
+                            'Інформація про клієнта',
                             Icons.person_outline,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Client Name',
-                            placeholder: 'Full Name',
+                            label: 'Ім\'я клієнта',
+                            placeholder: 'ПІБ',
                             controller: _clientNameController,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Phone Number',
-                            placeholder: '(555) 000-0000',
+                            label: 'Номер телефону',
+                            placeholder: '(0XX) XXX-XX-XX',
                             controller: _phoneNumberController,
                             isDark: isDark,
                             prefixIcon: Icons.call_outlined,
@@ -151,7 +151,7 @@ class _EditTicketPageState extends State<EditTicketPage> {
                           const SizedBox(height: 24),
 
                           _buildSectionHeader(
-                            'Service Details',
+                            'Деталі ремонту',
                             Icons.engineering_outlined,
                           ),
                           const SizedBox(height: 20),
@@ -161,14 +161,14 @@ class _EditTicketPageState extends State<EditTicketPage> {
                               Expanded(
                                 flex: 3,
                                 child: _buildDropdown(
-                                  label: 'Assigned Worker',
+                                  label: 'Виконавець',
                                   value: _assignedWorker,
                                   items: [
                                     'Marcus Thorne',
                                     'Sarah Jenkins',
                                     'Alex Johnson',
                                     'Mike Chen',
-                                    'Unassigned',
+                                    'Не призначено',
                                   ],
                                   onChanged: (val) {
                                     if (val != null) {
@@ -182,11 +182,11 @@ class _EditTicketPageState extends State<EditTicketPage> {
                               Expanded(
                                 flex: 2,
                                 child: _buildTextField(
-                                  label: 'Est. Price',
+                                  label: 'Орієнт. вартість',
                                   placeholder: '0.00',
                                   controller: _priceController,
                                   isDark: isDark,
-                                  prefixText: '\$',
+                                  prefixText: '₴ ',
                                   keyboardType: TextInputType.number,
                                 ),
                               ),
@@ -232,7 +232,7 @@ class _EditTicketPageState extends State<EditTicketPage> {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              'Cancel',
+              'Скасувати',
               style: TextStyle(
                 color: isDark ? Colors.grey[400] : const Color(0xFF6B5E4C),
                 fontWeight: FontWeight.w500,
@@ -240,7 +240,7 @@ class _EditTicketPageState extends State<EditTicketPage> {
             ),
           ),
           Text(
-            'Edit Ticket #${widget.ticket.id}',
+            'Редагувати талон #${widget.ticket.id}',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           IconButton(
@@ -264,7 +264,7 @@ class _EditTicketPageState extends State<EditTicketPage> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Text(
-              'Current Status',
+              'Поточний статус',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -481,7 +481,7 @@ class _EditTicketPageState extends State<EditTicketPage> {
             Icon(Icons.save_outlined),
             SizedBox(width: 8),
             Text(
-              'Save Changes',
+              'Зберегти зміни',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],
@@ -494,14 +494,14 @@ class _EditTicketPageState extends State<EditTicketPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Ticket'),
+        title: const Text('Видалити талон'),
         content: const Text(
-          'Are you sure you want to delete this ticket? This action cannot be undone.',
+          'Ви впевнені, що хочете видалити цей талон? Цю дію неможливо скасувати.',
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: const Text('Скасувати'),
           ),
           TextButton(
             onPressed: () {
@@ -510,7 +510,7 @@ class _EditTicketPageState extends State<EditTicketPage> {
               Navigator.pop(context); // Close edit page
               Navigator.pop(context); // Close details page (back to dashboard)
             },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+            child: const Text('Видалити', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),

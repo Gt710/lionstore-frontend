@@ -97,7 +97,7 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'RECENT RESULTS (${_filteredResults.length})',
+                  'ОСТАННІ РЕЗУЛЬТАТИ (${_filteredResults.length})',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -162,7 +162,7 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
             ),
           ),
           const Text(
-            'Find a Repair',
+            'Знайти ремонт',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ],
@@ -194,7 +194,7 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
         onChanged: (val) => setState(() => _searchQuery = val),
         style: const TextStyle(fontSize: 16),
         decoration: InputDecoration(
-          hintText: 'Search ID, Client, or Device...',
+          hintText: 'Пошук за ID, клієнтом або пристроєм...',
           hintStyle: TextStyle(
             color: Colors.grey[400],
             fontWeight: FontWeight.normal,
@@ -222,11 +222,11 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       child: Row(
         children: [
-          _buildFilterChip('Status: In Process', isDark, isActive: true),
+          _buildFilterChip('Статус: В роботі', isDark, isActive: true),
           const SizedBox(width: 8),
-          _buildFilterChip('Worker: Any', isDark),
+          _buildFilterChip('Виконавець: Будь-хто', isDark),
           const SizedBox(width: 8),
-          _buildFilterChip('Date: Last 30 Days', isDark),
+          _buildFilterChip('Дата: Останні 30 днів', isDark),
         ],
       ),
     );
@@ -259,9 +259,9 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
                   color: isDark ? Colors.white : Colors.black87,
                 ),
                 children: const [
-                  TextSpan(text: 'Status: '),
+                  TextSpan(text: 'Статус: '),
                   TextSpan(
-                    text: 'In Process',
+                    text: 'В роботі',
                     style: TextStyle(
                       color: AppColors.primary,
                       fontWeight: FontWeight.bold,
@@ -305,14 +305,14 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
           ),
           const SizedBox(height: 16),
           const Text(
-            'No tickets found',
+            'Талонів не знайдено',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 48),
             child: Text(
-              'Try adjusting your filters or search for a different ID or client name.',
+              'Спробуйте змінити фільтри або пошукати за іншим ID чи іменем клієнта.',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey[500], fontSize: 14),
             ),
@@ -331,7 +331,7 @@ class _SearchTicketPageState extends State<SearchTicketPage> {
               ),
             ),
             child: const Text(
-              'Clear All Filters',
+              'Очистити всі фільтри',
               style: TextStyle(
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,

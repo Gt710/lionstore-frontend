@@ -110,7 +110,7 @@ class _DashboardPageState extends State<DashboardPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Repair Service',
+              'Сервіс Ремонту',
               style: TextStyle(
                 fontSize: 36,
                 fontWeight: FontWeight.w800,
@@ -130,8 +130,8 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                     child: _buildActionButton(
                       context,
-                      label: 'New Ticket',
-                      sublabel: 'Create entry',
+                      label: 'Новий талон',
+                      sublabel: 'Створити запис',
                       icon: Icons.add,
                       color: AppColors.primary,
                       textColor: AppColors.textLight,
@@ -150,8 +150,8 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                     child: _buildActionButton(
                       context,
-                      label: 'Search',
-                      sublabel: 'Find by ID',
+                      label: 'Пошук',
+                      sublabel: 'Знайти за ID',
                       icon: Icons.search,
                       color: isDark
                           ? AppColors.surfaceDark
@@ -169,7 +169,7 @@ class _DashboardPageState extends State<DashboardPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'Recent Activity',
+                  'Останні активності',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 TextButton(
@@ -180,7 +180,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                   ),
                   child: const Text(
-                    'View All',
+                    'Дивитись всі',
                     style: TextStyle(
                       color: AppColors.primary,
                       fontWeight: FontWeight.w600,
@@ -310,17 +310,17 @@ class _DashboardPageState extends State<DashboardPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.handyman_outlined),
             activeIcon: Icon(Icons.handyman),
-            label: 'Repairs',
+            label: 'Ремонти',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.inventory_2_outlined),
             activeIcon: Icon(Icons.inventory_2),
-            label: 'Orders',
+            label: 'Замовлення',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.admin_panel_settings_outlined),
             activeIcon: Icon(Icons.admin_panel_settings),
-            label: 'Admin',
+            label: 'Адмін',
           ),
         ],
       ),

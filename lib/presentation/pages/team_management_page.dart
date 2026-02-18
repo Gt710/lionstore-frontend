@@ -41,7 +41,7 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
       initials: 'YK',
       avatarBg: Color(0xFFE5E7EB),
       avatarText: Color(0xFF4B5563),
-      role: 'Admin',
+      role: 'Адмін',
     ),
     const TeamMember(
       name: 'John Doe',
@@ -49,7 +49,7 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
       initials: 'JD',
       avatarBg: Color(0xFFDBEAFE),
       avatarText: Color(0xFF2563EB),
-      role: 'Pending',
+      role: 'Очікує',
     ),
     const TeamMember(
       name: 'Sarah Miller',
@@ -57,7 +57,7 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
       initials: 'SM',
       avatarBg: Color(0xFFF3E8FF),
       avatarText: Color(0xFF9333EA),
-      role: 'Pending',
+      role: 'Очікує',
     ),
     const TeamMember(
       name: 'Alex Lee',
@@ -65,15 +65,15 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
       initials: 'AL',
       avatarBg: Color(0xFFFFEDD5),
       avatarText: Color(0xFFEA580C),
-      role: 'Pending',
+      role: 'Очікує',
     ),
     const TeamMember(
-      name: 'Invited User',
+      name: 'Запрошений користувач',
       phone: '+380 50 888 99 00',
       initials: '',
       avatarBg: Color(0xFFF3F4F6),
       avatarText: Color(0xFF9CA3AF),
-      role: 'Pending',
+      role: 'Очікує',
       isInvited: true,
     ),
   ];
@@ -105,7 +105,7 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 8, bottom: 12),
                     child: Text(
-                      'TEAM MEMBERS (${_filteredMembers.length})',
+                      'КОМАНДА (${_filteredMembers.length})',
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -156,7 +156,7 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
           ),
           const SizedBox(width: 8),
           const Text(
-            'Team Management',
+            'Управління командою',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
         ],
@@ -186,7 +186,7 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
         onChanged: (val) => setState(() => _searchQuery = val),
         style: const TextStyle(fontSize: 16),
         decoration: InputDecoration(
-          hintText: 'Search technician...',
+          hintText: 'Пошук виконавця...',
           hintStyle: TextStyle(
             color: Colors.grey[400],
             fontWeight: FontWeight.normal,
@@ -200,7 +200,7 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
   }
 
   Widget _buildMemberTile(TeamMember member, bool isDark) {
-    final isAdmin = member.role == 'Admin';
+    final isAdmin = member.role == 'Адмін';
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -304,7 +304,7 @@ class _TeamManagementPageState extends State<TeamManagementPage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            isAdmin ? 'ADMIN' : 'PENDING',
+            isAdmin ? 'АДМІН' : 'ОЧІКУЄ',
             style: TextStyle(
               color: textColor,
               fontSize: 10,

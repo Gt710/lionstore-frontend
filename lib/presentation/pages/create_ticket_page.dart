@@ -67,30 +67,29 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                       child: Column(
                         children: [
                           _buildSectionHeader(
-                            'Device Details',
+                            'Деталі пристрою',
                             Icons.smartphone_outlined,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Device Model',
-                            placeholder: 'e.g. iPhone 14 Pro Max',
+                            label: 'Модель пристрою',
+                            placeholder: 'наприклад, iPhone 14 Pro Max',
                             controller: _deviceModelController,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Problem Description',
+                            label: 'Опис проблеми',
                             placeholder:
-                                'Describe the issue, physical damage, etc...',
+                                'Опишіть проблему, фізичні пошкодження тощо...',
                             controller: _problemDescriptionController,
                             isDark: isDark,
                             maxLines: 4,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Device Password / Pattern',
-                            placeholder:
-                                '1234, 0000 або графічний ключ (літера Z)',
+                            label: 'Пароль пристрою / Ключ',
+                            placeholder: '1234, 0000 або графічний ключ',
                             controller: _passwordController,
                             isDark: isDark,
                           ),
@@ -100,20 +99,20 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                           const SizedBox(height: 24),
 
                           _buildSectionHeader(
-                            'Client Information',
+                            'Інформація про клієнта',
                             Icons.person_outline,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Client Name',
-                            placeholder: 'Full Name',
+                            label: 'Ім\'я клієнта',
+                            placeholder: 'ПІБ',
                             controller: _clientNameController,
                             isDark: isDark,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'Phone Number',
-                            placeholder: '(555) 000-0000',
+                            label: 'Номер телефону',
+                            placeholder: '(0XX) XXX-XX-XX',
                             controller: _phoneNumberController,
                             isDark: isDark,
                             prefixIcon: Icons.call_outlined,
@@ -125,7 +124,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                           const SizedBox(height: 24),
 
                           _buildSectionHeader(
-                            'Logistics',
+                            'Логістика',
                             Icons.engineering_outlined,
                           ),
                           const SizedBox(height: 20),
@@ -135,12 +134,12 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                               Expanded(
                                 flex: 3,
                                 child: _buildDropdown(
-                                  label: 'Assigned Worker',
+                                  label: 'Виконавець',
                                   value: _assignedWorker,
                                   items: [
                                     'Marcus Thorne',
                                     'Sarah Jenkins',
-                                    'Unassigned',
+                                    'Не призначено',
                                   ],
                                   onChanged: (val) {},
                                   isDark: isDark,
@@ -150,11 +149,11 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                               Expanded(
                                 flex: 2,
                                 child: _buildTextField(
-                                  label: 'Est. Price',
+                                  label: 'Вартість',
                                   placeholder: '0.00',
                                   controller: _priceController,
                                   isDark: isDark,
-                                  prefixText: '\$',
+                                  prefixText: '₴ ',
                                   keyboardType: TextInputType.number,
                                 ),
                               ),
@@ -207,7 +206,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
             ),
           ),
           const Text(
-            'New Repair Ticket',
+            'Новий талон на ремонт',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
@@ -228,7 +227,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Text(
-              'Initial Status',
+              'Початковий статус',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
@@ -437,7 +436,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
             Icon(Icons.add_circle_outline),
             SizedBox(width: 8),
             Text(
-              'Create Ticket',
+              'Створити талон',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],

@@ -35,7 +35,7 @@ class AdminProfilePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Admin',
+                      'Адмін',
                       style: TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.w800,
@@ -85,7 +85,7 @@ class AdminProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Yuriy Kolomiiets',
+                'Юрій Коломієць',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -109,7 +109,7 @@ class AdminProfilePage extends StatelessWidget {
                     ),
                     SizedBox(width: 4),
                     Text(
-                      'ADMINISTRATOR',
+                      'АДМІНІСТРАТОР',
                       style: TextStyle(
                         color: AppColors.primary,
                         fontSize: 10,
@@ -134,7 +134,7 @@ class AdminProfilePage extends StatelessWidget {
           child: _buildStatCard(
             isDark,
             count: '12',
-            label: 'ACTIVE',
+            label: 'АКТИВНІ',
             icon: Icons.pending_actions,
             iconColor: Colors.orange,
             iconBg: Colors.orange.withValues(alpha: 0.1),
@@ -145,7 +145,7 @@ class AdminProfilePage extends StatelessWidget {
           child: _buildStatCard(
             isDark,
             count: '142',
-            label: 'COMPLETED',
+            label: 'ЗАВЕРШЕНІ',
             icon: Icons.check_circle_outlined,
             iconColor: Colors.green,
             iconBg: Colors.green.withValues(alpha: 0.1),
@@ -235,7 +235,7 @@ class AdminProfilePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 4, bottom: 12),
             child: Text(
-              'ADMIN CONSOLE',
+              'КОНСОЛЬ АДМІНІСТРАТОРА',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -295,7 +295,7 @@ class AdminProfilePage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(999),
                               ),
                               child: const Text(
-                                '2 PENDING',
+                                '2 ОЧІКУЮТЬ',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 10,
@@ -307,7 +307,7 @@ class AdminProfilePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Manage Team & Access',
+                          'Управління командою та доступом',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -318,7 +318,7 @@ class AdminProfilePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Approve new users, assign roles, or remove access from the system.',
+                          'Підтверджуйте нових користувачів, призначайте ролі або видаляйте доступ.',
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey[500],
@@ -353,7 +353,7 @@ class AdminProfilePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 4, bottom: 12),
             child: Text(
-              'SETTINGS',
+              'НАЛАШТУВАННЯ',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -375,7 +375,7 @@ class AdminProfilePage extends StatelessWidget {
             child: ListTile(
               leading: Icon(Icons.palette_outlined, color: Colors.grey[500]),
               title: const Text(
-                'Theme',
+                'Тема',
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               trailing: Row(
