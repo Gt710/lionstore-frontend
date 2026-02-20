@@ -173,7 +173,9 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
           ],
         ),
       ),
-      floatingActionButton: _buildCreateButton(),
+      floatingActionButton: MediaQuery.of(context).viewInsets.bottom > 0
+          ? null
+          : _buildCreateButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

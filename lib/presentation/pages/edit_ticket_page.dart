@@ -206,7 +206,9 @@ class _EditTicketPageState extends State<EditTicketPage> {
           ],
         ),
       ),
-      floatingActionButton: _buildSaveButton(),
+      floatingActionButton: MediaQuery.of(context).viewInsets.bottom > 0
+          ? null
+          : _buildSaveButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
@@ -240,7 +242,7 @@ class _EditTicketPageState extends State<EditTicketPage> {
             ),
           ),
           Text(
-            'Редагувати талон #${widget.ticket.id}',
+            'Редагувати #${widget.ticket.id}',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           IconButton(
