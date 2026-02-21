@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../../core/providers/theme_provider.dart';
 import '../../core/theme/app_theme.dart';
 import 'app_theme_page.dart';
+import 'pending_approval_page.dart';
+import 'registration_page.dart';
 
 class AdminProfilePage extends StatelessWidget {
   final VoidCallback onTeamManagement;
@@ -48,6 +50,7 @@ class AdminProfilePage extends StatelessWidget {
                     _buildStatsGrid(isDark),
                     _buildAdminConsoleCard(isDark),
                     _buildSettingsSection(context, isDark),
+                    _buildPreviewSection(context, isDark),
                   ],
                 ),
               ),
@@ -405,6 +408,88 @@ class AdminProfilePage extends StatelessWidget {
                   onSwitchTab(result);
                 }
               },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPreviewSection(BuildContext context, bool isDark) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 32, bottom: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 4, bottom: 12),
+            child: Text(
+              'ПОПЕРЕДНІЙ ПЕРЕГЛЯД',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[500],
+                letterSpacing: 1,
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : const Color(0xFFE6E2DB),
+              ),
+            ),
+            child: Column(
+              children: [
+                ListTile(
+                  leading: Icon(
+                    Icons.person_add_outlined,
+                    color: Colors.grey[500],
+                  ),
+                  title: const Text(
+                    'Реєстрація',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  trailing: Icon(Icons.chevron_right, color: Colors.grey[500]),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegistrationPage(),
+                      ),
+                    );
+                  },
+                ),
+                Divider(
+                  height: 1,
+                  color: isDark
+                      ? Colors.white.withValues(alpha: 0.05)
+                      : const Color(0xFFE6E2DB),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.pending_actions_outlined,
+                    color: Colors.grey[500],
+                  ),
+                  title: const Text(
+                    'Очікує підтвердження',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  trailing: Icon(Icons.chevron_right, color: Colors.grey[500]),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PendingApprovalPage(),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ],

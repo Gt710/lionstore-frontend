@@ -102,7 +102,7 @@ class PendingApprovalPage extends StatelessWidget {
 
           // Title & Description
           const Text(
-            'Account Pending',
+            'Очікує підтвердження',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -111,7 +111,7 @@ class PendingApprovalPage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Welcome to LionStore! Your account is currently under review. Please wait for an administrator to grant you access.',
+            'Ласкаво просимо до LionStore! Ваш обліковий запис наразі розглядається. Будь ласка, зачекайте, поки адміністратор надасть вам доступ.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16,
@@ -272,7 +272,7 @@ class _InReviewBadgeState extends State<_InReviewBadge>
           ),
           const SizedBox(width: 8),
           Text(
-            'IN REVIEW',
+            'НА РОЗГЛЯДІ',
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.bold,

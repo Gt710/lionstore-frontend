@@ -61,7 +61,7 @@ class _UpdateStatusSheetState extends State<UpdateStatusSheet> {
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: Text(
-              'Update Status',
+              'Оновити статус',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -100,14 +100,14 @@ class _UpdateStatusSheetState extends State<UpdateStatusSheet> {
                     child: Row(
                       children: [
                         Text(
-                          'Activity Note ',
+                          'Коментар ',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          '(Optional)',
+                          '(Не обов`язково)',
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey,
@@ -122,7 +122,7 @@ class _UpdateStatusSheetState extends State<UpdateStatusSheet> {
                     maxLines: 4,
                     style: const TextStyle(fontSize: 14),
                     decoration: InputDecoration(
-                      hintText: 'Add details about this status change...',
+                      hintText: 'Додайте деталі про цю зміну статусу...',
                       hintStyle: TextStyle(
                         color: isDark ? Colors.grey[600] : Colors.grey[400],
                       ),
@@ -171,7 +171,7 @@ class _UpdateStatusSheetState extends State<UpdateStatusSheet> {
                           ),
                         ),
                         child: const Text(
-                          'Update Status',
+                          'Оновити статус',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -185,7 +185,7 @@ class _UpdateStatusSheetState extends State<UpdateStatusSheet> {
                           minimumSize: const Size(double.infinity, 48),
                         ),
                         child: Text(
-                          'Cancel',
+                          'Скасувати',
                           style: TextStyle(
                             color: isDark ? Colors.grey[400] : Colors.grey[600],
                             fontWeight: FontWeight.bold,
