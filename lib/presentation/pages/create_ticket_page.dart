@@ -37,6 +37,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
 
     return Scaffold(
       backgroundColor: isDark
@@ -173,9 +174,20 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
           ],
         ),
       ),
-      floatingActionButton: MediaQuery.of(context).viewInsets.bottom > 0
-          ? null
-          : _buildCreateButton(),
+      floatingActionButton: AnimatedSlide(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOutCubic,
+        offset: isKeyboardVisible ? const Offset(0, 2) : Offset.zero,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+          opacity: isKeyboardVisible ? 0.0 : 1.0,
+          child: IgnorePointer(
+            ignoring: isKeyboardVisible,
+            child: _buildCreateButton(),
+          ),
+        ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

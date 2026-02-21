@@ -64,17 +64,51 @@ class _EditTicketPageState extends State<EditTicketPage> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
 
     return Scaffold(
       backgroundColor: isDark
           ? AppColors.backgroundDark
           : AppColors.backgroundLight,
+      appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor:
+            (isDark ? AppColors.backgroundDark : AppColors.backgroundLight)
+                .withValues(alpha: 0.95),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+        centerTitle: true,
+        title: Column(
+          children: [
+            Text(
+              'Редагувати талон',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: isDark ? Colors.grey[400] : Colors.grey[600],
+                letterSpacing: 1,
+              ),
+            ),
+            Text(
+              '#${widget.ticket.id}',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () => _showDeleteConfirmation(context),
+            icon: const Icon(Icons.delete_outline, color: Colors.red),
+          ),
+          const SizedBox(width: 8),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: [
-            // Sticky Header
-            _buildHeader(context, isDark),
-
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -206,54 +240,21 @@ class _EditTicketPageState extends State<EditTicketPage> {
           ],
         ),
       ),
-      floatingActionButton: MediaQuery.of(context).viewInsets.bottom > 0
-          ? null
-          : _buildSaveButton(),
+      floatingActionButton: AnimatedSlide(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOutCubic,
+        offset: isKeyboardVisible ? const Offset(0, 2) : Offset.zero,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+          opacity: isKeyboardVisible ? 0.0 : 1.0,
+          child: IgnorePointer(
+            ignoring: isKeyboardVisible,
+            child: _buildSaveButton(),
+          ),
+        ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
-  }
-
-  Widget _buildHeader(BuildContext context, bool isDark) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: (isDark ? AppColors.backgroundDark : Colors.white).withValues(
-          alpha: 0.95,
-        ),
-        border: Border(
-          bottom: BorderSide(
-            color: isDark
-                ? Colors.white.withValues(alpha: 0.05)
-                : const Color(0xFFE6E2DB),
-          ),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(
-              'Скасувати',
-              style: TextStyle(
-                color: isDark ? Colors.grey[400] : const Color(0xFF6B5E4C),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          Text(
-            'Редагувати #${widget.ticket.id}',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          IconButton(
-            onPressed: () => _showDeleteConfirmation(context),
-            icon: const Icon(Icons.delete_outline, color: Colors.red),
-            style: IconButton.styleFrom(
-              backgroundColor: Colors.red.withValues(alpha: 0.05),
-            ),
-          ),
-        ],
-      ),
     );
   }
 

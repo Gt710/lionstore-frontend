@@ -84,6 +84,7 @@ class TicketDetailsPage extends StatelessWidget {
           icon: const Icon(Icons.print_outlined, size: 26),
           onPressed: () {},
         ),
+        const SizedBox(width: 8),
       ],
     );
   }
